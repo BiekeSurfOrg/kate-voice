@@ -1,8 +1,14 @@
-<form [formGroup]="evaluateForm">
-  <textarea class="evaluate-text" readonly formControlName="textToEvaluate" ></textarea>
-  <button>
-    Play
-  </button>
+<form [formGroup]="evaluateForm" class="evaluate-text-form">
+  <div class="centering-container">
+    <textarea class="evaluate-text" readonly formControlName="textToEvaluate" ></textarea>
+  </div>
+  <div class="centering-container">
+    <button class='play-button'>
+      Play
+    </button>
+  </div>
+
+  <div class="centering-container">
   <div class="rating-holder" #ratingHolder >
     <div class="rating" (click)="setRating(1)">★</div>
     <div class="rating" (click)="setRating(2)">☆</div>
@@ -10,12 +16,17 @@
     <div class="rating" (click)="setRating(4)">☆</div>
     <div class="rating" (click)="setRating(5)">☆</div>
   </div>
+  </div>
+  <div class="centering-container">
+    <textarea formControlName="comment" class="comment-text" > </textarea>
+  </div>
+  <div class="centering-container">
+    <button class="action-button" type="submit" >
+      Next
+    </button>
+    <button class="action-button"  (click)="formSubmit()">
+      Send Rating
+    </button>
+  </div>
 
-  <input formControlName="comment" >
-  <button type="submit" >
-    Next
-  </button>
-  <button (click)="formSubmit()">
-    Send Rating
-  </button>
 </form>

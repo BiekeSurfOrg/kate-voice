@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {Router, RouterModule} from "@angular/router";
+import {VoiceService} from "../voice.service";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import {Router, RouterModule} from "@angular/router";
   imports: [ReactiveFormsModule, CommonModule, FormsModule]
 })
 export class LoginComponent {
-  constructor(private router:Router) {
+  constructor(private router:Router, private readonly _voiceService:VoiceService) {
   }
 
   loginForm = new FormGroup({
@@ -23,9 +24,13 @@ export class LoginComponent {
   }
 
   private redirect(shouldRoute:boolean){
-    if(shouldRoute)
+    if(shouldRoute){
+
+      this._voiceService.setId(this.loginForm.get('loginId')!.value)
     this.router.navigate(['/voice'])
-    else
+    }
+    else{
       alert("incorrect user")
+    }
   }
 }
