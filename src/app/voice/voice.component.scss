@@ -1,0 +1,15 @@
+.evaluate-text{
+  resize: none;
+}
+.red-background{
+  background-color: red;
+}
+.rating-holder{
+  display: flex;
+  gap: 10px;
+}
+
+.rating-holder > div{
+  font-size: 30px;
+  color: blue;
+}

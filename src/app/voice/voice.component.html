@@ -1,0 +1,21 @@
+<form [formGroup]="evaluateForm">
+  <textarea class="evaluate-text" readonly formControlName="textToEvaluate" ></textarea>
+  <button>
+    Play
+  </button>
+  <div class="rating-holder" #ratingHolder >
+    <div class="rating" (click)="setRating(1)">★</div>
+    <div class="rating" (click)="setRating(2)">☆</div>
+    <div class="rating" (click)="setRating(3)">☆</div>
+    <div class="rating" (click)="setRating(4)">☆</div>
+    <div class="rating" (click)="setRating(5)">☆</div>
+  </div>
+
+  <input formControlName="comment" >
+  <button type="submit" >
+    Next
+  </button>
+  <button (click)="formSubmit()">
+    Send Rating
+  </button>
+</form>
