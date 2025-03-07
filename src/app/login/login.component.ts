@@ -20,13 +20,13 @@ export class LoginComponent {
   })
 
   public formSubmit():void {
-    this.redirect(this.loginForm.get('loginId')?.value === "jf29771")
+    this.redirect(this.loginForm.get('loginId')?.value?.toLowerCase() === "jf29771")
   }
 
   private redirect(shouldRoute:boolean){
     if(shouldRoute){
 
-      this._voiceService.setId(this.loginForm.get('loginId')!.value)
+      this._voiceService.setId(this.loginForm.get('loginId')!.value!.toLowerCase())
     this.router.navigate(['/voice'])
     }
     else{

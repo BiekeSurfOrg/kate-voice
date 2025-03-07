@@ -3,28 +3,28 @@
     <textarea class="evaluate-text" readonly formControlName="textToEvaluate" ></textarea>
   </div>
   <div class="centering-container">
-    <button class='play-button'>
+    <button class='play-button kbc-style-button'>
       Play
     </button>
   </div>
 
   <div class="centering-container">
-  <div class="rating-holder" #ratingHolder >
-    <div class="rating" (click)="setRating(1)">★</div>
-    <div class="rating" (click)="setRating(2)">☆</div>
-    <div class="rating" (click)="setRating(3)">☆</div>
-    <div class="rating" (click)="setRating(4)">☆</div>
-    <div class="rating" (click)="setRating(5)">☆</div>
+  <div class="rating-holder" #ratingHolder (mousemove)="getCoordinates($event)" (mouseleave)="fillStartsOnMouseLeave()">
+    <div class="rating" id="1" (click)="setRating(1)">☆</div>
+    <div class="rating" id="2" (click)="setRating(2)">☆</div>
+    <div class="rating" id="3" (click)="setRating(3)">☆</div>
+    <div class="rating" id="4" (click)="setRating(4)">☆</div>
+    <div class="rating" id="5" (click)="setRating(5)">☆</div>
   </div>
   </div>
   <div class="centering-container">
-    <textarea formControlName="comment" class="comment-text" > </textarea>
+    <textarea placeholder="Optional Comment " formControlName="comment" class="comment-text" > </textarea>
   </div>
   <div class="centering-container">
-    <button class="action-button" type="submit" >
+    <button class="kbc-style-button action-button" type="submit" >
       Next
     </button>
-    <button class="action-button"  (click)="formSubmit()">
+    <button class="kbc-style-button action-button"  (click)="formSubmit()">
       Send Rating
     </button>
   </div>
