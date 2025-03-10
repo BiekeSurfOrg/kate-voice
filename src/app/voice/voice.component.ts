@@ -13,6 +13,10 @@ import {Router} from "@angular/router";
 })
 export class VoiceComponent implements OnInit{
   @ViewChild("ratingHolder",{static:false}) ratingHolder?:ElementRef;
+  @ViewChild("wordCounterHolder",{static:false}) wordCounterHolder?:ElementRef;
+
+  public wordCounter:number = 0;
+  public maxWordCount:number =500;
   constructor(private readonly _voiceService:VoiceService, private readonly _router:Router) {
     if (!_voiceService.getId()){
       this._router.navigate(['/login'])
@@ -21,6 +25,7 @@ export class VoiceComponent implements OnInit{
   ngOnInit(): void {
     this.evaluateForm.get('userId')?.setValue(this._voiceService.getId())
     this.evaluateForm.get('textToEvaluate')?.setValue("sample text sample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample text")
+    this.evaluateForm.get('comment')!.valueChanges.subscribe(value => this.wordCounter = value!.length)
   }
 
   evaluateForm = new FormGroup({
@@ -29,7 +34,9 @@ export class VoiceComponent implements OnInit{
     rating: new FormControl(0),
     comment: new FormControl(''),
 
-  })
+  });
+
+
   public formSubmit() {
     if (!this.evaluateForm.get('rating')?.value){
       alert('Please rate the text')

@@ -18,7 +18,11 @@
   </div>
   </div>
   <div class="centering-container">
-    <textarea placeholder="Optional Comment " formControlName="comment" class="comment-text" > </textarea>
+    <div class="comment-container">
+    <textarea placeholder="Optional Comment" formControlName="comment" class="comment-text" [maxlength]="maxWordCount"> </textarea>
+    <span #wordCounterHolder [ngClass]="{'color-red': wordCounter === maxWordCount}"
+    >{{wordCounter}}/{{maxWordCount}}</span>
+    </div>
   </div>
   <div class="centering-container">
     <button class="kbc-style-button action-button" type="submit" >

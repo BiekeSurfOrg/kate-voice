@@ -13,7 +13,6 @@
   width: 400px;
   height: 100px;
   border-color: rgb(0, 174, 239);
-  margin-bottom: 30px;
 }
 .red-background{
   background-color: red;
@@ -59,4 +58,17 @@
 
 .kbc-style-button:hover{
   opacity: 70%;
+}
+
+.comment-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-container > span{
+  text-align: end;
+}
+
+.color-red{
+  color: #d64040;
 }
