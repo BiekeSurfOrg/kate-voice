@@ -4,6 +4,12 @@ import {CommonModule} from "@angular/common";
 import {Router, RouterModule} from "@angular/router";
 import {VoiceService} from "../voice.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {finalize, tap} from "rxjs";
+
+// export interface AudioResponse {
+//   inputStreamResource:string,
+//
+// }
 
 @Component({
   selector: 'app-login',
@@ -13,6 +19,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
   imports: [ReactiveFormsModule, CommonModule, FormsModule, HttpClientModule]
 })
 export class LoginComponent {
+   languages:string[] = [];
+   shouldBeVisible = true;
   constructor(private router:Router, private readonly _voiceService:VoiceService, private readonly _http:HttpClient) {
   }
 
@@ -20,19 +28,36 @@ export class LoginComponent {
     loginId: new FormControl('')
   })
 
-  public formSubmit():void {
-    this._http.put("https://kate-voice-backend-2ad12d55f690.herokuapp.com/",{}).subscribe(value => console.log(value))
-    this.redirect(this.loginForm.get('loginId')?.value?.toLowerCase() === "jf29771")
+  public getLanguages():void {
+    this._http.post<string[]>("https://kate-voice-backend-2ad12d55f690.herokuapp.com/languages/" + this.getLoginId(),{}).subscribe(value => {
+      this.shouldBeVisible = false;
+      this.languages = value;
+    });
+  }
+
+  private getLoginId():string{
+    return this.loginForm.get('loginId')?.value!;
   }
 
   private redirect(shouldRoute:boolean){
     if(shouldRoute){
-
-      this._voiceService.setId(this.loginForm.get('loginId')!.value!.toLowerCase())
-    this.router.navigate(['/voice'])
+      this._voiceService.setId(this.getLoginId().toLowerCase());
+      this.router.navigate(['/voice']);
     }
     else{
-      alert("incorrect user")
+      alert("incorrect user");
     }
+  }
+
+  getAudio(language:string) {
+    this._http.post("https://kate-voice-backend-2ad12d55f690.herokuapp.com/audio/"  + this.getLoginId() + "/"+language,{},{responseType:"blob"}).pipe(
+        tap((value)=> {
+          const audioUrl = URL.createObjectURL(value)
+          const audio = new Audio(audioUrl)
+          audio.play();
+        }),
+        finalize(()=> console.log("fin"))
+    ).subscribe();
+
   }
 }

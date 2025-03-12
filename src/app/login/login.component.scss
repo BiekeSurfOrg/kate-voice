@@ -1,0 +1,16 @@
+:host{
+  display: grid;
+  height: 90vh;
+  place-items: center;
+}
+
+.text-align-center{
+  text-align: center;
+}
+
+button + button{
+  margin-left: 10px;
+}
+.description{
+  font-family: sans-serif;
+}

@@ -51,7 +51,7 @@ export class VoiceComponent implements OnInit{
     this.evaluateForm.get('rating')?.setValue(rating);
   }
 
-  private fillStars(elementCollection:HTMLCollection, rating:number){
+  private fillStars(elementCollection:HTMLCollection, rating:number):void{
     for (let i = 0; i < 5; i++) {
       if (i < rating ){
         elementCollection[i].innerHTML = "★"

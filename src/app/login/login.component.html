@@ -1,6 +1,23 @@
-<form (ngSubmit)="formSubmit()" [formGroup]="loginForm">
-  <input formControlName="loginId" >
-  <button>
+<div>
+<div class="width-80pr margin-0-auto description">
+  <p>Voice Experiment</p>
+  <p>Welcome,<br>
+    You got here through a link you got in a private email we send you. If you didn't you can close this page.</p>
+  <p>If you got the email, you also got a private ID to log into this evaluation tool. This will give you a choice of the language you want to evaluate. After clicking the language button, we will take you to the first sentence to evaluate. You can replay it as much as you want, after that you can rate it with a number of stars and leave an optional comment. </p>
+  <p>To stop the evaluation just close the window, you can come back anytime and do this as often as you want. The more the better... </p>
+  <p>If you want to test another language, close the evaluation window and restart from the link in the mail. </p>
+  <p>Good luck!</p>
+</div>
+
+<form [formGroup]="loginForm" class="text-align-center">
+  <input formControlName="loginId" class="kbc-style-input" placeholder="Your ID">
+  <div>
+  <button *ngIf="shouldBeVisible" (click)="getLanguages()" class="kbc-style-button action-button">
     Login
   </button>
+    <button *ngFor="let language of languages" (click)="getAudio(language)" class="kbc-style-button action-button">
+      {{language}}
+    </button>
+  </div>
 </form>
+</div>

@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+.kbc-style-button{
+  cursor: pointer;
+  color: white;
+  background-color:rgb(0, 174, 239);
+  border: none;
+}
+
+.kbc-style-button:hover{
+  opacity: 70%;
+}
+
+.kbc-style-input{
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 7px 20px 7px 20px;
+}
+.action-button{
+  font-size: 15px;
+  padding: 10px 20px 10px 20px;
+  margin: 10px;
+}
+.width-80pr{
+  width: 80%;
+}
+
+.margin-0-auto{
+  margin: 0 auto;
+}
