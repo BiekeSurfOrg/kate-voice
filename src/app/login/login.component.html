@@ -15,7 +15,7 @@
   <button *ngIf="shouldBeVisible" (click)="getLanguages()" class="kbc-style-button action-button">
     Login
   </button>
-    <button *ngFor="let language of languages" (click)="getAudio(language)" class="kbc-style-button action-button">
+    <button *ngFor="let language of languages" (click)="selectLanguage(language)" class="kbc-style-button action-button">
       {{language}}
     </button>
   </div>

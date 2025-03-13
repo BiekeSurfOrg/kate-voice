@@ -3,6 +3,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {CommonModule} from "@angular/common";
 import {VoiceService} from "../voice.service";
 import {Router} from "@angular/router";
+import {finalize, tap} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-voice',
@@ -17,12 +19,22 @@ export class VoiceComponent implements OnInit{
 
   public wordCounter:number = 0;
   public maxWordCount:number =500;
-  constructor(private readonly _voiceService:VoiceService, private readonly _router:Router) {
+  private audioUrl:string = '';
+  private audio!:HTMLAudioElement;
+  constructor(private readonly _voiceService:VoiceService, private readonly _router:Router, private readonly _http:HttpClient) {
     if (!_voiceService.getId()){
       this._router.navigate(['/login'])
     }
   }
   ngOnInit(): void {
+    this._http.post("https://kate-voice-backend-2ad12d55f690.herokuapp.com/audio/"  + this._voiceService.getId() + "/"+this._voiceService.getSelectedLanguage(),{},{responseType:"blob"}).pipe(
+        tap((value)=> {
+           this.audioUrl = URL.createObjectURL(value)
+          this.audio = new Audio(this.audioUrl)
+        }),
+        finalize(()=> console.log("fin"))
+    ).subscribe();
+
     this.evaluateForm.get('userId')?.setValue(this._voiceService.getId())
     this.evaluateForm.get('textToEvaluate')?.setValue("sample text sample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample text")
     this.evaluateForm.get('comment')!.valueChanges.subscribe(value => this.wordCounter = value!.length)
@@ -74,4 +86,7 @@ export class VoiceComponent implements OnInit{
     }
   }
 
+  playAudio():void {
+    this.audio.play();
+  }
 }

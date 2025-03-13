@@ -1,15 +1,10 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {Router, RouterModule} from "@angular/router";
+import {Router} from "@angular/router";
 import {VoiceService} from "../voice.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {finalize, tap} from "rxjs";
 
-// export interface AudioResponse {
-//   inputStreamResource:string,
-//
-// }
 
 @Component({
   selector: 'app-login',
@@ -49,15 +44,8 @@ export class LoginComponent {
     }
   }
 
-  getAudio(language:string) {
-    this._http.post("https://kate-voice-backend-2ad12d55f690.herokuapp.com/audio/"  + this.getLoginId() + "/"+language,{},{responseType:"blob"}).pipe(
-        tap((value)=> {
-          const audioUrl = URL.createObjectURL(value)
-          const audio = new Audio(audioUrl)
-          audio.play();
-        }),
-        finalize(()=> console.log("fin"))
-    ).subscribe();
-
+  selectLanguage(language:string) {
+    this._voiceService.setSelectedLanguage(language);
+    this.redirect(true)
   }
 }

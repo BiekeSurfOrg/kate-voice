@@ -4,8 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class VoiceService {
-   public id:string | null = '';
-   getId():string | null{
+    private id:string | null = '';
+    private selectedLanguage:string | null = '';
+
+    getSelectedLanguage():string | null{
+        return this.selectedLanguage;
+}
+
+setSelectedLanguage(newLanguage:string){
+        this.selectedLanguage = newLanguage;
+}
+    getId():string | null{
      return this.id
    }
 
