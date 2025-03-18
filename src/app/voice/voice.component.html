@@ -20,7 +20,7 @@
   <div class="centering-container">
     <div class="comment-container">
     <textarea placeholder="Optional Comment" formControlName="comment" class="comment-text" [maxlength]="maxWordCount"> </textarea>
-    <span #wordCounterHolder [ngClass]="{'color-red': wordCounter === maxWordCount}"
+    <span style="font-family: sans-serif" #wordCounterHolder [ngClass]="{'color-red': wordCounter === maxWordCount}"
     >{{wordCounter}}/{{maxWordCount}}</span>
     </div>
   </div>

@@ -19,7 +19,6 @@ export class VoiceComponent implements OnInit{
 
   public wordCounter:number = 0;
   public maxWordCount:number =500;
-  private audioUrl:string = '';
   private audio!:HTMLAudioElement;
   constructor(private readonly _voiceService:VoiceService, private readonly _router:Router, private readonly _http:HttpClient) {
     if (!_voiceService.getId()){
@@ -27,17 +26,9 @@ export class VoiceComponent implements OnInit{
     }
   }
   ngOnInit(): void {
-    this._http.post("https://kate-voice-backend-2ad12d55f690.herokuapp.com/audio/"  + this._voiceService.getId() + "/"+this._voiceService.getSelectedLanguage(),{},{responseType:"blob"}).pipe(
-        tap((value)=> {
-           this.audioUrl = URL.createObjectURL(value)
-          this.audio = new Audio(this.audioUrl)
-        }),
-        finalize(()=> console.log("fin"))
-    ).subscribe();
-
+  this.getAudio();
     this.evaluateForm.get('userId')?.setValue(this._voiceService.getId())
-    this.evaluateForm.get('textToEvaluate')?.setValue("sample text sample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample text")
-    this.evaluateForm.get('comment')!.valueChanges.subscribe(value => this.wordCounter = value!.length)
+    this.evaluateForm.get('comment')!.valueChanges.subscribe(value => value !== null ? this.wordCounter = value!.length: this.wordCounter = 0)
   }
 
   evaluateForm = new FormGroup({
@@ -48,12 +39,26 @@ export class VoiceComponent implements OnInit{
 
   });
 
+  private getAudio(){
+    this._http.post<{audio:string,text:string}>("https://kate-voice-backend-2ad12d55f690.herokuapp.com/audio/"  + this._voiceService.getId() + "/"+this._voiceService.getSelectedLanguage(),{}).pipe(
+      tap((value)=> {
+        this.evaluateForm.get('textToEvaluate')?.setValue(value.text);
+        this.audio = new Audio("data:audio/wav;base64," + value.audio);
+      }),
+      finalize(()=> console.log("fin"))
+    ).subscribe();
+
+  }
 
   public formSubmit() {
     if (!this.evaluateForm.get('rating')?.value){
       alert('Please rate the text')
       return
     }
+    this.evaluateForm.reset();
+    const elementChildren:HTMLCollection = this.ratingHolder?.nativeElement.children;
+    this.fillStars(elementChildren, 0);
+    this.getAudio();
     console.log(this.evaluateForm.value);
   }
 

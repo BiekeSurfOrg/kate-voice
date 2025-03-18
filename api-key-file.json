@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "still-era-453709-p3",
+  "private_key_id": "6e7099f4317c39ecc1d7362b801804711037c8e2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDFWweVeBiji9Ce\n75dB5BVbcZ5FHLZZ/DX1Dc+4ol3TgCM89cbE60TuaCOaUcezNw8Vgd9+A5x238Kw\nIoAYV+6h70qDqRbydC2VshEY0mUObVP2RZ0mATcFR3Fh6/8hHhyqrqRSphJJ0Rb5\nhBWydhAt4ZakZql2wKxODgd8SB5AFxR3sWnLUXvTprIubKBOSqWohLgKKenZIdDX\nRVPMlBIkY1dtvHSr1Rnxgqv0yJvZTXopWTenzuaNkK2onGEZeYAJzCjCt/b0Y8in\nujzh79sr27jkpzRThsQysIUXX2S00XYclbBYC9wf7lFvHGEjNJMNJVVfIeNfDt9R\n9m9OIahZAgMBAAECggEADnP5rLUUXNnO5+zU73LkK4O5GwecxR9G1lDyHuvpIiWW\nrw6yxVYTgMAop1MI5HOKS8FsnB5olX4SlHKaXe4GoF5VXyoBb7UZZ4aYYPB7jSBt\njzIO7asWG/Fc+NZfI05AvDE5AIKAAV7qJ1DIg/7IdYu5TAXmsDcxBzBY1P21FW1a\nS/EsxzF38lPfqyJUPiuwyUJolcJD4oI+qx1HDu/YzyqgUo0W+YmbQY8UZGnefsiJ\neVvsUldmabvP3jUHB+QUlQbUbime1uXsURVcPWQy/v7Q5eyY34tpSXAHTR28wF8e\nBM2Hk8oP5h0Ig/f1SaMRNLZUf8uvlvFiDKeBIVPNjwKBgQDugAIFPSnbPcgES8ri\noRXydv0fh/VXXV8f1VntDrMxlj0CIsVYU1gaI0lNC3MiNIvnSjRi77VoHhGZRdXq\nQx8CvWFVhlslEqPQU2mmqoZqR4sJ47WS4fcKs6EcrptI66i7+H978BhmhkIBJTdv\n24UFhzWEo84PFv8Mkc0XwbCHAwKBgQDT1inEYrlJ0F2Smh4iP0BUhQV1B4HaQ1Iw\ntVPo4I3DFbbGhZbi0BiuBzm4VZ/jRer6Rk6IRTjzRGnKwB+20ljdMjS3EsFquTLF\nQcv4FHOU1PauDrSfK0yGzkc9rVTFSnx5muxXDzAK1Uht/5Fmbw6+lH8ShMB8leJ8\nUB7K2X5WcwKBgQCcKuOnzIn4zjaHYZ2i0fnN/031dJAYucIM1SYCDKsXYBnoqR3x\nnPlGfC6GLWYhUqj9NOCim/V8DJxXcZwFvhezMpBmcQiDePYc9lFq2aQUOW54dksx\nt5aMwlxPrKFvmSeulaPcYrWHhIf5ugXXz7UFjqhjhuLpjJRLBbl2wdQ2QwKBgFTM\nx72I87l7wumb7nIxNdRfx7Z4gd/Y0T8UZ3my4qz0tU01TxiOy0JnPBDxnebCJ3V2\nzZs5crnXai4yyL9L5yztGzMqO+k4J/3VAAzYSwiKVBGLa3zIPYM9ckFbcLLlxXx8\nqx2Sw92iUbNO+mqyDIn4MgI8yD1XVuoCvMDhXfTHAoGBAMmTST+ZhXZXPvEAcPaz\nIZokkSTgo+FyLXlaCfEQzuPghXa8UgQGvLaAhRdH+L7XXcJTmVq1a95TmF6Gpzws\ndFDiJ5kn5EPgzQBwHYzdnNcyJLcxyqG1jv0ipLWGr+uE5rGgxsE9JFdS0mVTMqSX\nS0Fp0zp4O9qfz2Kf91EZeSiS\n-----END PRIVATE KEY-----\n",
+  "client_email": "kate-voice@still-era-453709-p3.iam.gserviceaccount.com",
+  "client_id": "109807997908577011152",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/kate-voice%40still-era-453709-p3.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -24,19 +24,27 @@ export class LoginComponent {
   })
 
   public getLanguages():void {
-    this._http.post<string[]>("https://kate-voice-backend-2ad12d55f690.herokuapp.com/languages/" + this.getLoginId(),{}).subscribe(value => {
+    this._http.post<string[]>("https://kate-voice-backend-2ad12d55f690.herokuapp.com/languages/" + this.getLoginId(),{}).subscribe((value:string[])  => {
+      if (!this.checkForUser(value)){
+        alert("incorrect user")
+        this.loginForm.reset()
+        return;
+      }
       this.shouldBeVisible = false;
       this.languages = value;
     });
   }
 
+  private checkForUser(array:string[]):boolean{
+    return !array.includes("User not found");
+  }
   private getLoginId():string{
     return this.loginForm.get('loginId')?.value!;
   }
 
   private redirect(shouldRoute:boolean){
     if(shouldRoute){
-      this._voiceService.setId(this.getLoginId().toLowerCase());
+      this._voiceService.setId(this.getLoginId());
       this.router.navigate(['/voice']);
     }
     else{
