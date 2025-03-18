@@ -4,7 +4,7 @@ import {LoginComponent} from "./login/login.component";
 import {VoiceComponent} from "./voice/voice.component";
 
 const routes: Routes = [
-  {path:'login', component:LoginComponent},
+  {path:'login', component:LoginComponent, pathMatch:'full'},
   {path:'voice', component:VoiceComponent},
   {path:'', redirectTo:'/login', pathMatch:"full"},
 
