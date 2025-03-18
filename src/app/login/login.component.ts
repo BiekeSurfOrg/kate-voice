@@ -46,7 +46,7 @@ export class LoginComponent {
 
   private redirect(shouldRoute:boolean){
     if(shouldRoute){
-      this._voiceService.setId(this.getLoginId());
+      this._voiceService.setId(this.getLoginId().toUpperCase());
       this.router.navigate(['/voice']);
     }
     else{
