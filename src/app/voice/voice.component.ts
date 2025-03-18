@@ -6,6 +6,11 @@ import {Router} from "@angular/router";
 import {finalize, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
+export interface AudioInterface {
+  text:string
+  audio:string
+  limit:boolean
+}
 @Component({
   selector: 'app-voice',
   templateUrl: './voice.component.html',
@@ -20,6 +25,7 @@ export class VoiceComponent implements OnInit{
   public wordCounter:number = 0;
   public maxWordCount:number =500;
   private audio!:HTMLAudioElement;
+  private shouldBreak:boolean = false;
   constructor(private readonly _voiceService:VoiceService, private readonly _router:Router, private readonly _http:HttpClient) {
     if (!_voiceService.getId()){
       this._router.navigate(['/login'])
@@ -33,17 +39,22 @@ export class VoiceComponent implements OnInit{
 
   evaluateForm = new FormGroup({
     userId: new FormControl(''),
-    textToEvaluate: new FormControl(''),
+    message: new FormControl(''),
     rating: new FormControl(0),
     comment: new FormControl(''),
 
   });
 
   private getAudio(){
-    this._http.post<{audio:string,text:string}>("https://kate-voice-backend-2ad12d55f690.herokuapp.com/audio/"  + this._voiceService.getId() + "/"+this._voiceService.getSelectedLanguage(),{}).pipe(
+    this._http.post<AudioInterface>("https://kate-voice-backend-2ad12d55f690.herokuapp.com/audio/"  + this._voiceService.getId() + "/"+this._voiceService.getSelectedLanguage(),{}).pipe(
       tap((value)=> {
-        this.evaluateForm.get('textToEvaluate')?.setValue(value.text);
+        if (value.limit){
+          this.shouldBreak = true;
+          alert("you have reached the maximum amount of ratings \/n Thank you :)")
+        }else {
+        this.evaluateForm.get('message')?.setValue(value.text);
         this.audio = new Audio("data:audio/wav;base64," + value.audio);
+        }
       }),
       finalize(()=> console.log("fin"))
     ).subscribe();
@@ -52,9 +63,10 @@ export class VoiceComponent implements OnInit{
 
   public formSubmit() {
     if (!this.evaluateForm.get('rating')?.value){
-      alert('Please rate the text')
-      return
+      alert('Please rate the text');
+      return;
     }
+    this._http.post("https://kate-voice-backend-2ad12d55f690.herokuapp.com/rating",this.evaluateForm.value).subscribe();
     this.evaluateForm.reset();
     const elementChildren:HTMLCollection = this.ratingHolder?.nativeElement.children;
     this.fillStars(elementChildren, 0);

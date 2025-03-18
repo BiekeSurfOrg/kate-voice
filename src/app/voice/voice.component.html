@@ -1,6 +1,6 @@
 <form [formGroup]="evaluateForm" class="evaluate-text-form">
   <div class="centering-container">
-    <textarea class="evaluate-text" readonly formControlName="textToEvaluate" ></textarea>
+    <textarea class="evaluate-text" readonly formControlName="message" ></textarea>
   </div>
   <div class="centering-container">
     <button class='play-button kbc-style-button' (click)="playAudio()">
@@ -25,9 +25,9 @@
     </div>
   </div>
   <div class="centering-container">
-    <button class="kbc-style-button action-button" type="submit" >
-      Next
-    </button>
+<!--    <button class="kbc-style-button action-button" type="submit" >-->
+<!--      Next-->
+<!--    </button>-->
     <button class="kbc-style-button action-button"  (click)="formSubmit()">
       Send Rating
     </button>
