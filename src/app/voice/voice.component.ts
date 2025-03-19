@@ -66,8 +66,11 @@ export class VoiceComponent implements OnInit{
       alert('Please rate the text');
       return;
     }
-    this._http.post("https://kate-voice-backend-2ad12d55f690.herokuapp.com/rating",this.evaluateForm.value).subscribe();
-    this.evaluateForm.reset();
+    this._http.post("https://kate-voice-backend-2ad12d55f690.herokuapp.com/rating",this.evaluateForm.value).pipe(
+      finalize(()=>{
+        this.resetForm()
+      })
+    ).subscribe();
     const elementChildren:HTMLCollection = this.ratingHolder?.nativeElement.children;
     this.fillStars(elementChildren, 0);
     this.getAudio();
@@ -78,6 +81,12 @@ export class VoiceComponent implements OnInit{
     const elementChildren:HTMLCollection = this.ratingHolder?.nativeElement.children;
     this.fillStars(elementChildren, rating)
     this.evaluateForm.get('rating')?.setValue(rating);
+  }
+
+  private resetForm(){
+    this.evaluateForm.get('message')?.reset()
+    this.evaluateForm.get('rating')?.reset()
+    this.evaluateForm.get('comment')?.reset()
   }
 
   private fillStars(elementCollection:HTMLCollection, rating:number):void{
