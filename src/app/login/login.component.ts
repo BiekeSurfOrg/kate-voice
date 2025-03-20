@@ -24,7 +24,7 @@ export class LoginComponent {
   })
 
   public getLanguages():void {
-    this._http.get<string[]>("https://kate-voice-backend-2ad12d55f690.herokuapp.com/languages/" + this.getLoginId().toUpperCase(),{}).subscribe((value:string[])  => {
+    this._http.post<string[]>("https://kate-voice-backend-2ad12d55f690.herokuapp.com/languages/" + this.getLoginId().toUpperCase(),{}).subscribe((value:string[])  => {
       // if (!this.checkForUser(value)){
       //   alert("incorrect user")
       //   this.loginForm.reset()
