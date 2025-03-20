@@ -5,9 +5,7 @@ import {Router} from "@angular/router";
 import {VoiceService} from "../voice.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 
-export interface LanguageMap {
-  [key:string]:boolean
-}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +14,7 @@ export interface LanguageMap {
   imports: [ReactiveFormsModule, CommonModule, FormsModule, HttpClientModule]
 })
 export class LoginComponent {
-   languages: LanguageMap | undefined;
+   languages: string[] | undefined;
    shouldBeVisible = true;
   constructor(private router:Router, private readonly _voiceService:VoiceService, private readonly _http:HttpClient) {
   }
@@ -26,7 +24,7 @@ export class LoginComponent {
   })
 
   public getLanguages():void {
-    this._http.get<LanguageMap>("https://kate-voice-backend-2ad12d55f690.herokuapp.com/availability/" + this.getLoginId().toUpperCase(),{}).subscribe((value:LanguageMap)  => {
+    this._http.get<string[]>("https://kate-voice-backend-2ad12d55f690.herokuapp.com/languages/" + this.getLoginId().toUpperCase(),{}).subscribe((value:string[])  => {
       // if (!this.checkForUser(value)){
       //   alert("incorrect user")
       //   this.loginForm.reset()

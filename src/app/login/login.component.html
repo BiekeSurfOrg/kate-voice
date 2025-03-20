@@ -16,9 +16,9 @@
     Login
   </button>
     <div *ngIf="languages">
-      <ng-container *ngFor="let language of languages | keyvalue">
-        <button *ngIf="!language.value" (click)="selectLanguage(language.key)" class="kbc-style-button action-button">
-          {{language.key}}
+      <ng-container *ngFor="let language of languages ">
+        <button (click)="selectLanguage(language)" class="kbc-style-button action-button">
+          {{language}}
         </button>
       </ng-container>
 
