@@ -30,6 +30,11 @@ export class LoginComponent {
       //   this.loginForm.reset()
       //   return;
       // }
+      if (value.includes('User not found')){
+        this.shouldBeVisible = true;
+        this.loginForm.reset();
+        return;
+      }
       this.shouldBeVisible = false;
       this.languages = value;
     });
